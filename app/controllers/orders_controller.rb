@@ -14,6 +14,9 @@ class OrdersController < ApplicationController
         product_list.quantity = cart_item.quantity
         product_list.save
       end
+      current_cart.clean!
+      # 调用cart的model，清空购物车
+      OrderMailer.notify_order_placed(@order).deliver!
 
       redirect_to order_path(@order.token)
     else
@@ -26,6 +29,30 @@ class OrdersController < ApplicationController
     @order = Order.find_by_token(params[:id])
     @product_lists = @order.product_lists
   end
+
+  def pay_with_alipay
+    @order = Order.find_by_token(params[:id])
+    @order.set_payment_with!("alipay")
+    @order.make_payment!
+
+    redirect_to order_path(@order.token), notice: "使用支付宝成功完成支付"
+  end
+
+  def pay_with_wechat
+    @order = Order.find_by_token(params[:id])
+    @order.set_payment_with!("wechat")
+    @order.make_payment!
+
+    redirect_to order_path(@order.token), notice: "使用微信成功完成支付"
+  end
+
+  def apply_to_cancel
+    @order = Order.find(params[:id])
+    OrderMailer.apply_cancel(@order).deliver!
+    flash[:notice] = '已经提交申请'
+    redirect_to :back
+  end
+
   private
 
   def order_params
