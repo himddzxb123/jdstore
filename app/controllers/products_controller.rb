@@ -17,5 +17,10 @@ class ProductsController < ApplicationController
     end
     redirect_to :back
   end
+  def search
+
+    @products = Product.where("title LIKE ? ", ['%',params[:q],'%'].join )
+
+  end
 
 end

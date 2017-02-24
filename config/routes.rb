@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   root 'products#index'
-
+ get '/products/search',to: 'products#search'
   resources :products do
     member do
       post :add_to_cart
