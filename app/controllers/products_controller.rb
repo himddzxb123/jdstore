@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   def index
-    @products = Product.all
+    @products = Product.where("title LIKE ? ", ['%',params[:q],'%'].join )
   end
 
   def show
@@ -16,6 +16,9 @@ class ProductsController < ApplicationController
       flash[:warning] = "你的购物车已经有此商品"
     end
     redirect_to :back
+  end
+  def search
+    @products = Product.where("title LIKE ? ", ['%',params[:q],'%'].join )
   end
 
 end
