@@ -29,7 +29,6 @@
     </div>
   </div>
 </div>
-
 <!-- 首页的大图 -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" media="all">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" rel="stylesheet" media="all">
@@ -112,46 +111,63 @@
 </div> <!-- End  bootstrap-touch-slider Slider -->
 
 <!-- productlist -->
-<div class="productList">
+<!-- <div class="productList">
   <h3>钢 琴</h3>
   <div class="productList-item bg-color1"></div>
   <div class="productList-item bg-color2"></div>
   <div class="productList-item bg-color3"></div>
   <div class="productList-item bg-color4 productList-lastItem"></div>
-</div>
-
+</div> -->
 <div class="productList">
-  <h3>吉 他</h3>
-  <div class="productList-item bg-color1"></div>
-  <div class="productList-item bg-color2"></div>
-  <div class="productList-item bg-color3"></div>
-  <div class="productList-item bg-color4 productList-lastItem"></div>
-</div>
-
-<div class="productList">
-  <h3>古 筝</h3>
-  <div class="productList-item bg-color1"></div>
-  <div class="productList-item bg-color2"></div>
-  <div class="productList-item bg-color3"></div>
-  <div class="productList-item bg-color4 productList-lastItem"></div>
-</div>
-
-<div class="productList">
+  <h3>钢 琴</h3>
   <% @products.each do |product| %>
-    <div class="productList-item">
-      <% if product.sort == 0 %>
-      <%= link_to product_path(product) do %>
-        <% if product.image.present? %>
-          <%= image_tag(product.image.thumb.url, class: "thumbnail") %>
-        <% else %>
-          <%= image_tag("http://placehold.it/200x200&text=No Pic", class: "thumbnail") %>
+    <% if product.sort == 1 %>
+      <div class="productList-item">
+        <%= link_to product_path(product) do %>
+          <% if product.image.present? %>
+            <%= image_tag(product.image.thumb.url, class: "thumbnail") %>
+          <% else %>
+            <%= image_tag("http://placehold.it/200x200&text=No Pic", class: "thumbnail") %>
+          <% end %>
         <% end %>
-      <% end %>
-      <%= product.title %> ￥ <%= product.price %>
-    </div>
+        <%= product.title %> ￥ <%= product.price %>
+     </div>
     <% end %>
   <% end %>
-
+</div>
+<div class="productList">
+  <h3>吉 他</h3>
+  <% @products.each do |product| %>
+    <% if product.sort == 2 %>
+      <div class="productList-item">
+        <%= link_to product_path(product) do %>
+          <% if product.image.present? %>
+            <%= image_tag(product.image.thumb.url, class: "thumbnail") %>
+          <% else %>
+            <%= image_tag("http://placehold.it/200x200&text=No Pic", class: "thumbnail") %>
+          <% end %>
+        <% end %>
+        <%= product.title %> ￥ <%= product.price %>
+     </div>
+    <% end %>
+  <% end %>
+</div>
+<div class="productList">
+  <h3>古 筝</h3>
+  <% @products.each do |product| %>
+    <% if product.sort == 3 %>
+      <div class="productList-item">
+        <%= link_to product_path(product) do %>
+          <% if product.image.present? %>
+            <%= image_tag(product.image.thumb.url, class: "thumbnail") %>
+          <% else %>
+            <%= image_tag("http://placehold.it/200x200&text=No Pic", class: "thumbnail") %>
+          <% end %>
+        <% end %>
+        <%= product.title %> ￥ <%= product.price %>
+     </div>
+    <% end %>
+  <% end %>
 </div>
 <!--  class: "thumbnail"是bootstrap内置的image的图像属性：意思是带边框 -->
 <!--  bootstrap,有很多现成的image加文字链接的代码案例-->
