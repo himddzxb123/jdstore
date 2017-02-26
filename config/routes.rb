@@ -4,6 +4,9 @@ Rails.application.routes.draw do
 
 
   get '/products/search',to: 'products#search'
+  get '/products/piano',to: 'products#piano'
+  # get '/products/guiter',to: 'products#search'
+  # get '/products/old',to: 'products#search'
 
   resources :products do
     member do

@@ -17,7 +17,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   process resize_to_fit: [800, 800] #图片上传后，自动剪切成我设定的尺寸
 
   version :thumb do  #同时设定其他尺寸的版本-thumb
-    process resize_to_fit: [200, 200]
+    process resize_to_fit: [285, 285]
   end
 
   version :medium do #同时设定其他尺寸的版本-medium
